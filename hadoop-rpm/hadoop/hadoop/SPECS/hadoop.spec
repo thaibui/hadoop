@@ -207,6 +207,50 @@ export HADOOP_OPTS="${HADOOP_OPTS} -Dhdp.version=${HDP_VERSION}"
 exec %{hdp}/hadoop/bin/hadoop.distro "$@"
 EOL
 
+# setup HDP specific hdfs shell
+cat > $OUT/hadoop/bin/hdfs <<"EOL"
+#!/bin/bash
+
+export HADOOP_HOME=${HADOOP_HOME:-%{hdp}/hadoop}
+export HADOOP_MAPRED_HOME=${HADOOP_MAPRED_HOME:-%{hdp}/hadoop-mapreduce}
+export HADOOP_YARN_HOME=${HADOOP_YARN_HOME:-%{hdp}/hadoop-yarn}
+export HADOOP_LIBEXEC_DIR=${HADOOP_HOME}/libexec
+export HDP_VERSION=${HDP_VERSION:-%{hdp_build}}
+export HADOOP_OPTS="${HADOOP_OPTS} -Dhdp.version=${HDP_VERSION}"
+
+exec %{hdp}/hadoop-hdfs/bin/hdfs.distro "$@"
+EOL
+
+## setup HDP specific yarn shell
+#cat > $OUT/hadoop/bin/yarn <<"EOL"
+##!/bin/bash
+#
+#export HADOOP_HOME=${HADOOP_HOME:-%{hdp}/hadoop}
+#export HADOOP_MAPRED_HOME=${HADOOP_MAPRED_HOME:-%{hdp}/hadoop-mapreduce}
+#export HADOOP_YARN_HOME=${HADOOP_YARN_HOME:-%{hdp}/hadoop-yarn}
+#export HADOOP_LIBEXEC_DIR=${HADOOP_HOME}/libexec
+#export HDP_VERSION=${HDP_VERSION:-%{hdp_build}}
+#export HADOOP_OPTS="${HADOOP_OPTS} -Dhdp.version=${HDP_VERSION}"
+#export YARN_OPTS="${YARN_OPTS} -Dhdp.version=${HDP_VERSION}"
+#
+#exec %{hdp}/hadoop-yarn/bin/yarn.distro "$@"
+#EOL
+
+# setup HDP specific mapred shell
+#cat > $OUT/hadoop/bin/mapred <<"EOL"
+##!/bin/bash
+#
+#export HADOOP_HOME=${HADOOP_HOME:-%{hdp}/hadoop}
+#export HADOOP_MAPRED_HOME=${HADOOP_MAPRED_HOME:-%{hdp}/hadoop-mapreduce}
+#export HADOOP_YARN_HOME=${HADOOP_YARN_HOME:-%{hdp}/hadoop-yarn}
+#export HADOOP_LIBEXEC_DIR=${HADOOP_HOME}/libexec
+#export HDP_VERSION=${HDP_VERSION:-%{hdp_build}}
+#export HADOOP_OPTS="${HADOOP_OPTS} -Dhdp.version=${HDP_VERSION}"
+#export YARN_OPTS="${YARN_OPTS} -Dhdp.version=${HDP_VERSION}"
+#
+#exec %{hdp}/hadoop-mapreduce/bin/marped.distro "$@"
+#EOL
+
 # hadoop etc
 mkdir -p $OUT/hadoop/etc
 pushd $OUT/hadoop/etc; ln -s ../../hadoop/conf hadoop; popd
