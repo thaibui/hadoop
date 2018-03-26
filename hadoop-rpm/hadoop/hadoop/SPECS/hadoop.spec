@@ -309,7 +309,14 @@ sed -i 's/#!\/usr\/bin\/env bash/#!\/usr\/bin\/env bash\n\nexport HADOOP_HOME=\/
 cp $OUT/hadoop/sbin/workers.sh $OUT/hadoop/sbin/slaves.sh
 
 # mapreduce.tar.gz
-cp $DIST/../hadoop-%{hadoop_version}.tar.gz $OUT/hadoop/mapreduce.tar.gz
+# extract the files, then rename the top-level dir from hadoop-${version} to hadoop
+pushd $DIST/../
+rm -rf /tmp/mapreduce
+mkdir /tmp/mapreduce
+tar xvf hadoop-%{hadoop_version}.tar.gz -C /tmp/mapreduce
+mv /tmp/mapreduce/hadoop-%{hadoop_version} /tmp/mapreduce/hadoop
+tar zcvf $OUT/hadoop/mapreduce.tar.gz /tmp/mapreduce
+popd
 
 %files
 # default attribues
