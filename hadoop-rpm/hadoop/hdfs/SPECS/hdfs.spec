@@ -255,8 +255,8 @@ EOL
 %defattr(0644, root, root, 0755)
 
 # hdfs config
-%config(noreplace) %attr(0644, root, root) "%hdp/etc/hadoop/conf.empty/hdfs-site.xml"
-%config(noreplace) %attr(0644, root, root) "%hdp/etc/security/limits.d/hdfs.conf"
+%config(noreplace) %attr(0644, root, root) "%hdp/etc/hadoop/conf.empty"
+%config(noreplace) %attr(0644, root, root) "%hdp/etc/security/limits.d"
 
 # everything else
 %attr(0755, root, root) "%hdp/hadoop-hdfs/*"
