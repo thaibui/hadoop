@@ -315,7 +315,8 @@ rm -rf /tmp/mapreduce
 mkdir /tmp/mapreduce
 tar xvf hadoop-%{hadoop_version}.tar.gz -C /tmp/mapreduce
 mv /tmp/mapreduce/hadoop-%{hadoop_version} /tmp/mapreduce/hadoop
-tar zcvf $OUT/hadoop/mapreduce.tar.gz /tmp/mapreduce
+pushd /tmp/mapreduce
+tar zcvf $OUT/hadoop/mapreduce.tar.gz hadoop
 popd
 
 %files
