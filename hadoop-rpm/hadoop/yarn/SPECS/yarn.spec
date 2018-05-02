@@ -189,6 +189,8 @@ declare -A cj=(
   [hadoop-yarn-server-tests]=share/hadoop/yarn/hadoop-yarn-server-tests-%{hadoop_version}.jar
   [hadoop-yarn-server-timeline-pluginstorage]=share/hadoop/yarn/hadoop-yarn-server-timeline-pluginstorage-%{hadoop_version}.jar
   [hadoop-yarn-server-web-proxy]=share/hadoop/yarn/hadoop-yarn-server-web-proxy-%{hadoop_version}.jar
+  [hadoop-yarn-services-core]=share/hadoop/yarn/hadoop-yarn-services-core-%{hadoop_version}.jar
+  [hadoop-yarn-services-api]=share/hadoop/yarn/hadoop-yarn-services-api-%{hadoop_version}.jar
 )
 pushd $OUT
 for f in "${!cj[@]}"; do
