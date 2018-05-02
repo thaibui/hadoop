@@ -157,7 +157,7 @@ declare -A cj=(
   [hadoop-mapreduce-client-hs]=share/hadoop/mapreduce/hadoop-mapreduce-client-hs-%{hadoop_version}.jar
   [hadoop-mapreduce-client-hs-plugins]=share/hadoop/mapreduce/hadoop-mapreduce-client-hs-plugins-%{hadoop_version}.jar
   [hadoop-mapreduce-client-shuffle]=share/hadoop/mapreduce/hadoop-mapreduce-client-shuffle-%{hadoop_version}.jar
-  [hadoop-mapreduce-client-hs]=share/hadoop/mapreduce/hadoop-mapreduce-client-hs-%{hadoop_version}.jar
+  [hadoop-mapreduce-client-uploader]=share/hadoop/mapreduce/hadoop-mapreduce-client-uploader-%{hadoop_version}.jar
   [hadoop-mapreduce-examples]=share/hadoop/mapreduce/hadoop-mapreduce-examples-%{hadoop_version}.jar
 )
 pushd $OUT
