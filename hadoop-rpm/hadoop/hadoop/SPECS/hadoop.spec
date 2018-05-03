@@ -152,14 +152,11 @@ for f in ${ff[@]}; do
 done
 cp $DIST/etc/hadoop/workers $CONF_EMPTY/slaves
 
-# hadoop etc config (the dir where various RPMs will place their ACTUAL config into)
-ETC_CONF=$RPM_BUILD_ROOT/etc/hadoop/%hdp_build/0
-mkdir -p $ETC_CONF
-
 # hadoop 
 mkdir -p $OUT/hadoop
-# symlink to etc/config
-ln -s /etc/hadoop/%hdp_build/0 $OUT/hadoop/conf
+
+# $OUT/hadoop/conf will symlink to /etc/hadoop/conf which will be created later 
+pushd $OUT/hadoop; ln -s /etc/hadoop/conf conf; popd
 
 # hadoop common jars
 declare -A cj=(
