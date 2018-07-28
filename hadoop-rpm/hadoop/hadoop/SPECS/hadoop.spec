@@ -332,6 +332,9 @@ if [ !  -e "/etc/hadoop/conf" ]; then
     mkdir -p /etc/hadoop/conf
     cp -rp %hdp/etc/hadoop/conf.empty/* /etc/hadoop/conf
 fi
+/usr/bin/install -d -o hdfs -g hadoop -m 0775  /var/log/hadoop
+/usr/bin/install -d -o hdfs -g hadoop -m 0775  /var/run/hadoop
+/usr/bin/install -d -o hdfs -g hadoop -m 0755  /var/lib/hadoop
 /usr/bin/hdp-select --rpm-mode set hadoop-client %hdp_build
 /usr/bin/hdp-select --rpm-mode set hadoop-hdfs-datanode %hdp_build
 /usr/bin/hdp-select --rpm-mode set hadoop-hdfs-journalnode %hdp_build
